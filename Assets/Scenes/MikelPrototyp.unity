@@ -654,6 +654,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 131464587, guid: c796049e7b20b9f40a3b1eff2dff335c, type: 3}
+      propertyPath: itemType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 775339206155880160, guid: c796049e7b20b9f40a3b1eff2dff335c, type: 3}
       propertyPath: m_Name
       value: GameElement
