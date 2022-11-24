@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 playerPosition;
     private Rigidbody playerRb;
-    public GameObject ninjaStar;
+    
     public float movementSpeed;
     public float jumpForce;
     public float horizontalInput;
@@ -29,11 +29,16 @@ public class PlayerMovement : MonoBehaviour
     public float atackTime;
     public float atackCoolDown;
 
+    [Header("NinjaStar")]
+    public GameObject ninjaStar;
+    public bool canThrow;
+    public float throwTime;
+
     //[Header("Jumping")]
     //public float buttonTime = 0.3f;
     //public float jumpTime;
     //public bool jumping;
-    
+
     [Header("Dashing")]
     public bool canDash = true;
     public float timeBtweDashes;
@@ -68,8 +73,9 @@ public class PlayerMovement : MonoBehaviour
             // let the Player shoot a Ninja Star
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
-                
+                NinjaStarAbility();
+
+
             }
             
             // let the Player Jump and anables the dubble jump
@@ -176,5 +182,25 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(atackCoolDown);
         canAtack = true;
     }
+
+
+    void NinjaStarAbility()
+    {
+        if (canThrow)
+        {
+            StartCoroutine(NinjaStardAttack());
+
+        }
+
+    }
+
+    IEnumerator NinjaStardAttack()
+    {
+        canThrow = false;
+        Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
+        yield return new WaitForSeconds(throwTime);
+        canThrow = true;
+    }
+
 
 }

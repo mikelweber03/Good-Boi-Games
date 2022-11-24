@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public float randomTime;
+    private float randomTime;
     public float spawnX;
     public float spawnY;
     public float spawnZ;
-    public GameObject[] enemyPrefeb;
-    // Start is called before the first frame update
+    public GameObject enemyPrefeb;
+    
     void Start()
     {
-        StartCoroutine(EnemySpawn());
+        InvokeRepeating("SpawnEnemy", 3, 5);
     }
 
-    // Update is called once per frame
+     
     void Update()
     {
         
     }
 
-    IEnumerator EnemySpawn()
+    void SpawnEnemy()
     {
-        randomTime = Random.Range(1, 5);
-
+        Instantiate(enemyPrefeb);
     }
 
 }
