@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starSpeed: 10
-  rotationSpeed: 500
+  rotationSpeed: 0
   rotx: 0
   roty: 0
   rotz: 0
