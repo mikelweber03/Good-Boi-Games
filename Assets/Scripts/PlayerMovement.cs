@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 playerPosition;
     private Rigidbody playerRb;
+    public GameObject ninjaStar;
     public float movementSpeed;
     public float jumpForce;
     public float horizontalInput;
@@ -20,6 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 crouchHigh = new Vector3(0f, 0.7f, 0f);
     private Vector3 crouchScale = new Vector3(1f, 0.4f, 1f);
     private Vector3 standingScale = new Vector3(1, 1, 1);
+
+    [Header("swordAtack")]
+    public MeshRenderer swortMeshRenderer;
+    public BoxCollider swortBoxCollider;
+    bool canAtack = true;
+    public float atackTime;
+    public float atackCoolDown;
 
     //[Header("Jumping")]
     //public float buttonTime = 0.3f;
@@ -35,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     public float startDashTime;
     
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -46,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         // eingabe für die bewegung in wertikalerweise 
@@ -58,23 +65,27 @@ public class PlayerMovement : MonoBehaviour
 
             playerPosition = transform.position;
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch)
+            // let the Player shoot a Ninja Star
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                DashAbility();
+                Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
             }
-
+            
+            // let the Player Jump and anables the dubble jump
             if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 isOnAir = true;
             }
+            // let the player dubble jump with the isOnAir condition
             else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnAir = false;
 
             }
+            // shifts the scale of the Player charakter for a bether coruch animation
             if (Input.GetKeyDown(KeyCode.S) && isOnGround && !crouch)
             {
                 crouch = true;
@@ -82,11 +93,24 @@ public class PlayerMovement : MonoBehaviour
                 this.transform.localPosition = playerPosition - crouchHigh;
 
             }
+            // Shifts the scale back after crouch
             else if (Input.GetKeyUp(KeyCode.S) && crouch)
             {
                 crouch = false;
                 this.transform.localScale = standingScale;
                 this.transform.localPosition = playerPosition + crouchHigh;
+            }
+
+            //let the Player Dash
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch)
+            {
+                DashAbility();
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && !crouch)
+            {
+                SwordAbility();
+                
             }
             //else if (!isOnGround)
             //{
@@ -111,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+    // void for the Dash Ability
     void DashAbility()
     {
         if (canDash)
@@ -118,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+    // Coroutine for the dash
     IEnumerator Dash()
     {
         canDash = false;
@@ -128,5 +154,26 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
 
         }
+    void SwordAbility()
+    {
+        if (canAtack)
+        {
+            StartCoroutine(SwordAttack());
+            
+        }
+            
+    }
+
+    IEnumerator SwordAttack()
+    {
+        canAtack = false;
+        swortMeshRenderer.enabled = true;
+        swortBoxCollider.enabled = true;
+        yield return new WaitForSeconds(atackTime);
+        swortMeshRenderer.enabled = false;
+        swortBoxCollider.enabled = false;
+        yield return new WaitForSeconds(atackCoolDown);
+        canAtack = true;
+    }
 
 }
