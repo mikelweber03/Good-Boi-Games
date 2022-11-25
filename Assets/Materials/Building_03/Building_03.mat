@@ -27,6 +27,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
+  - _MATERIAL_FEATURE_SPECULAR_COLOR
   - _NORMALMAP
   - _NORMALMAP_TANGENT_SPACE
   - _SPECULARCOLORMAP
@@ -449,7 +450,7 @@ Material:
     - _LinkDetailsWithBase1: 1
     - _LinkDetailsWithBase2: 1
     - _LinkDetailsWithBase3: 1
-    - _MaterialID: 1
+    - _MaterialID: 4
     - _Metallic: 0
     - _Metallic0: 0
     - _Metallic1: 0
