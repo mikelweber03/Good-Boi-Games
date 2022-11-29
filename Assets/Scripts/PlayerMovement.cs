@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
-                Destroy(gameObject,5);
+                
             }
             
             // let the Player Jump and anables the dubble jump
