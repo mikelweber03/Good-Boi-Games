@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -74,8 +75,6 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 NinjaStarAbility();
-
-
             }
             
             // let the Player Jump and anables the dubble jump
@@ -118,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 SwordAbility();
                 
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SceneManager.LoadScene("LucianosWorkSpace");
             }
             //else if (!isOnGround)
             //{

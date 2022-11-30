@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement1 : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class EnemyMovement1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(enemy, 15);
+        Destroy(enemy, 30);
     }
 
     // Update is called once per frame
@@ -34,7 +35,16 @@ public class EnemyMovement1 : MonoBehaviour
             Destroy(other.gameObject);
             
         }
-    }
 
+        
+    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        SceneManager.LoadScene("LucianosMainMenu");
+    //        Debug.Log("fick dich flo");
+    //    }
+    //}
 
 }
