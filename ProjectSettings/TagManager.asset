@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Sword
   - Item
+  - Enemy
+  - NinjaStern
   layers:
   - Default
   - TransparentFX
