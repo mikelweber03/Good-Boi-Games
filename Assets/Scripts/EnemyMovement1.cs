@@ -5,19 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    public GameObject enemy;
-    public float enemySpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Vector3[] positions;
+
+    private int index;
+
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         Destroy(enemy, 30);
     }
-
+    */
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime *  - enemySpeed);
+        transform.position = Vector2.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
 
+        if(transform.position == positions[index])
+        {
+            if(index == positions.Length - 1)
+            {
+                index = 0;
+            }
+            else { index++; }
+             
+                 
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
