@@ -8,31 +8,35 @@ public class EnemyMovement1 : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private Vector3[] positions;
-
-    private int index;
+    private Vector3 target;
+    bool goal = true;
 
     // Start is called before the first frame update
-    /*void Start()
+    void Start()
     {
-        Destroy(enemy, 30);
+       
     }
-    */
-    // Update is called once per frame
+    
+     //Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
-
-        if(transform.position == positions[index])
+        if (transform.position.x < target.x)
         {
-            if(index == positions.Length - 1)
-            {
-                index = 0;
-            }
-            else { index++; }
-             
-                 
+            goal = false;
         }
+
+        if (goal == true)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            Debug.Log("it worked");
+        }
+        
+        
+            
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -53,6 +57,7 @@ public class EnemyMovement1 : MonoBehaviour
 
         
     }
+    
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.tag == "Player")
