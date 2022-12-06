@@ -9,7 +9,7 @@ public class UnitHealth : MonoBehaviour
 
 
     public int Health
-    {
+    { 
         get
         {
             return _currentHealth;

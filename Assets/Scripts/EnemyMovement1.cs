@@ -11,10 +11,14 @@ public class EnemyMovement1 : MonoBehaviour
     private Vector3 target;
     bool goal = true;
     int dmg;
+    
+    public BoxCollider playerBoxCollider;
     // Start is called before the first frame update
     void Start()
     {
         dmg = 1;
+
+        playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
     
      //Update is called once per frame
@@ -62,10 +66,24 @@ public class EnemyMovement1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.gameManager._playerHealth.DmgUnit(1);
-            Debug.Log("fick dich");
+            
+            TakeDmg();
+            Debug.Log(collision.contactCount);
+            //Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
+        
+        
+    }
 
+    IEnumerator TakeDmg()
+    {
+        
+        //GameManager.gameManager._playerHealth.DmgUnit(dmg);
+        //Debug.Log(GameManager.gameManager._playerHealth.Health);
+       // playerBoxCollider.enabled = false;
+        yield return new WaitForSeconds(1);
+        //playerBoxCollider.enabled = true;
+        Debug.Log(GameManager.gameManager._playerHealth.Health);
     }
 
 }
