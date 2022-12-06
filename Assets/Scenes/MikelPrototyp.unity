@@ -772,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   target: {x: 0, y: 2, z: 0}
+  playerBoxCollider: {fileID: 0}
 --- !u!136 &781818204
 CapsuleCollider:
   m_ObjectHideFlags: 0

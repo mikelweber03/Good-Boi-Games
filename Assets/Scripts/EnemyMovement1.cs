@@ -68,7 +68,7 @@ public class EnemyMovement1 : MonoBehaviour
         {
             
             TakeDmg();
-            Debug.Log(collision.contactCount);
+            //Debug.Log(collision.contactCount);
             //Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
         
