@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnGround = true;
     public bool isOnAir = true;
     public bool crouch = false;
+    private LayerMask groundLayer;
 
     public Vector3 playerPosition;
     private Rigidbody playerRb;
+    private BoxCollider boxCollider;
     
     public float movementSpeed;
     public float jumpForce;
@@ -43,19 +45,24 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dashing")]
     public bool canDash = true;
     public float timeBtweDashes;
-    // public float dashJumpIncrease;
     public float dashSpeed;
     public float dashingTime;
     public float startDashTime;
-    
 
+    [Header("Wall Jump")]
+    bool isTouchingFront;
+    public Transform frontCheck;
+    bool wallSliding;
+    public float WallSlidingSpeed;
     void Start()
     {
         
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         dashingTime = startDashTime;
-        
+        boxCollider = GetComponent<BoxCollider>();
+
+
 
     }
 
@@ -64,12 +71,29 @@ public class PlayerMovement : MonoBehaviour
     {
         // eingabe für die bewegung in wertikalerweise 
         horizontalInput = Input.GetAxis("Horizontal");
+
+        
+
         if (!gameOver)
         {
 
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed);
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
 
             playerPosition = transform.position;
+
+
+           // bool flipped = false; //= horizontalInput < 0;
+
+            if(horizontalInput < 0)
+            {
+                this.transform.rotation = Quaternion.Euler(new Vector3(0f,  180f , 0f));
+            }
+            
+            if (horizontalInput > 0)
+            {
+                 this.transform.rotation = Quaternion.Euler(new Vector3(0f,  0f, 0f));
+
+            }
 
             // let the Player shoot a Ninja Star
             if (Input.GetKeyDown(KeyCode.Q))
@@ -146,6 +170,10 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
+    
+      
+        
     // void for the Dash Ability
     void DashAbility()
     {
