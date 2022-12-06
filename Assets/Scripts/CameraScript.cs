@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
-        //CamTransform = Camera.main.transform;
+       
+       player = GameObject.FindGameObjectWithTag("Player"); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //CamTransform.position = new Vector3(Player.position.x, CamTransform.position.y, CamTransform.position.z);
+       
+    }
+
+    private void LateUpdate()
+    {
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
     }
 }

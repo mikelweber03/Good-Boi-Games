@@ -50,10 +50,8 @@ public class PlayerMovement : MonoBehaviour
     public float startDashTime;
 
     [Header("Wall Jump")]
-    bool isTouchingFront;
-    public Transform frontCheck;
-    bool wallSliding;
-    public float WallSlidingSpeed;
+    public bool isOnWall = false;
+    
     void Start()
     {
         
@@ -76,47 +74,62 @@ public class PlayerMovement : MonoBehaviour
 
         if (!gameOver)
         {
+            if (isOnWall)
+            {
+                playerRb.velocity = Vector3.zero;
+                playerRb.angularVelocity = Vector3.zero;
+                playerRb.useGravity = false;
 
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+                //if ()
+                //{
+
+                //}
+
+            }
+            if (!isOnWall)
+            {
+                transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+            }
+            
 
             playerPosition = transform.position;
 
 
-           // bool flipped = false; //= horizontalInput < 0;
+           // flipp the player sprite
 
-            if(horizontalInput < 0)
+            if(horizontalInput < 0 && !isOnWall)
             {
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f,  180f , 0f));
             }
             
-            if (horizontalInput > 0)
+            if (horizontalInput > 0 && !isOnWall)
             {
                  this.transform.rotation = Quaternion.Euler(new Vector3(0f,  0f, 0f));
 
             }
 
             // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall)
             {
                 NinjaStarAbility();
             }
             
             // let the Player Jump and anables the dubble jump
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch)
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
-                isOnAir = true;
+               // isOnAir = true;
             }
             // let the player dubble jump with the isOnAir condition
-            else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
-            {
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isOnAir = false;
+            // else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
+            //{
+                //playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+               // isOnAir = false;
 
-            }
+            //}
             // shifts the scale of the Player charakter for a bether coruch animation
-            if (Input.GetKeyDown(KeyCode.S) && isOnGround && !crouch)
+            if (Input.GetKeyDown(KeyCode.S) && isOnGround && !crouch && !isOnWall)
             {
                 crouch = true;
                 this.transform.localScale = crouchScale;
@@ -137,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
                 DashAbility();
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && !crouch)
+            if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall)
             {
                 SwordAbility();
                 
@@ -167,6 +180,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnGround = true;
 
+        }
+        else if (collision.gameObject.CompareTag("Wall") && !isOnGround)
+        {
+            isOnWall = true;
         }
         
     }
