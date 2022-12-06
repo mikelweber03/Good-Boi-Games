@@ -5,19 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    public GameObject enemy;
-    public float enemySpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Vector3 target;
+    bool goal = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(enemy, 30);
+       
     }
-
-    // Update is called once per frame
+    
+     //Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime *  - enemySpeed);
+        if (transform.position.x < target.x)
+        {
+            goal = false;
+        }
 
+        if (goal == true)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            Debug.Log("it worked");
+        }
+        
+        
+            
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,6 +57,7 @@ public class EnemyMovement1 : MonoBehaviour
 
         
     }
+    
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.tag == "Player")
