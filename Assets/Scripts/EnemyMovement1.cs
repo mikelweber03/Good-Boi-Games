@@ -10,11 +10,11 @@ public class EnemyMovement1 : MonoBehaviour
     [SerializeField]
     private Vector3 target;
     bool goal = true;
-
+    int dmg;
     // Start is called before the first frame update
     void Start()
     {
-       
+        dmg = 1;
     }
     
      //Update is called once per frame
@@ -32,7 +32,7 @@ public class EnemyMovement1 : MonoBehaviour
         else
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed);
-            Debug.Log("it worked");
+          
         }
         
         
@@ -58,13 +58,14 @@ public class EnemyMovement1 : MonoBehaviour
         
     }
     
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        SceneManager.LoadScene("LucianosMainMenu");
-    //        Debug.Log("fick dich flo");
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.gameManager._playerHealth.DmgUnit(1);
+            Debug.Log("fick dich");
+        }
+
+    }
 
 }
