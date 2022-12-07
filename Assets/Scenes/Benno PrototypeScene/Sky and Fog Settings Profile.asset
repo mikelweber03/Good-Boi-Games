@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 0
-    m_Value: 5000
+    m_Value: 4895.35
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -42,13 +42,13 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -498.6
   maximumHeight:
     m_OverrideState: 0
-    m_Value: 50
+    m_Value: 576.9
   meanFreePath:
-    m_OverrideState: 0
-    m_Value: 400
+    m_OverrideState: 1
+    m_Value: 35
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -195,7 +195,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.477
+    m_Value: 0.47
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -315,17 +315,17 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   contrast:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 9
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.40009183, g: 0.3622641, b: 1, a: 1}
+    m_Value: {r: 0.38301048, g: 0.35315052, b: 0.8773585, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -6
   saturation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -7
 --- !u!114 &-854422307549836063
 MonoBehaviour:
   m_ObjectHideFlags: 3
