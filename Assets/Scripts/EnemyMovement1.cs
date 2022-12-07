@@ -10,13 +10,13 @@ public class EnemyMovement1 : MonoBehaviour
     [SerializeField]
     private Vector3 target;
     bool goal = true;
-    
 
+    private Vector3 start;
     public BoxCollider playerBoxCollider;
     // Start is called before the first frame update
     void Start()
     {
-        
+        start.x = transform.position.x;
 
         playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
@@ -31,14 +31,25 @@ public class EnemyMovement1 : MonoBehaviour
 
         if (goal == true)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            
+            
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            
+                
+            
         }
-        else
+        else 
         {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-
+            if (transform.position.x <= start.x)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+            }
+            else
+                goal = true;
+            
         }
 
+        
 
 
     }
