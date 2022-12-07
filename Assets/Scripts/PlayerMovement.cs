@@ -18,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public float horizontalInput;
+    public float verticalInput;
     public float gravityModifier;
-    Vector3 normal;
+   
 
     public float crouchSpeed;
     private Vector3 crouchHigh = new Vector3(0f, 0.7f, 0f);
@@ -38,11 +39,6 @@ public class PlayerMovement : MonoBehaviour
     public bool canThrow;
     public float throwTime;
 
-    //[Header("Jumping")]
-    //public float buttonTime = 0.3f;
-    //public float jumpTime;
-    //public bool jumping;
-
     [Header("Dashing")]
     public bool canDash = true;
     public float timeBtweDashes;
@@ -54,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnWall = false;
     public float wallJump;
     public bool grounded = true;
+    public float climping;
     
     void Start()
     {
@@ -72,8 +69,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // eingabe für die bewegung in wertikalerweise 
         horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        
+
 
         if (!gameOver)
         {
@@ -83,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
                 playerRb.angularVelocity = Vector3.zero;
                 playerRb.useGravity = false;
                 grounded = false;
+                transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
                 if (isOnWall && Input.GetKeyDown(KeyCode.Space))
                 {
                     isOnWall = false;
@@ -157,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
                 DashAbility();
             }
 
+                // Sword atack
             if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall)
             {
                 SwordAbility();
@@ -197,9 +197,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    
-      
-        
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            isOnWall = false;
+            playerRb.useGravity = true;
+        }
+    }
+
+
     // void for the Dash Ability
     void DashAbility()
     {
