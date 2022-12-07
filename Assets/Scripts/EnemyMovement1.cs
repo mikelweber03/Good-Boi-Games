@@ -5,18 +5,52 @@ using UnityEngine.SceneManagement;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    public GameObject enemy;
-    public float enemySpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Vector3 target;
+    bool goal = true;
+
+    private Vector3 start;
+    public BoxCollider playerBoxCollider;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(enemy, 30);
+        start.x = transform.position.x;
+
+        playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime *  - enemySpeed);
+        if (transform.position.x < target.x)
+        {
+            goal = false;
+        }
+
+        if (goal == true)
+        {
+            
+            
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            
+                
+            
+        }
+        else 
+        {
+            if (transform.position.x <= start.x)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+            }
+            else
+                goal = true;
+            
+        }
+
+        
+
 
     }
     private void OnTriggerEnter(Collider other)
@@ -25,7 +59,7 @@ public class EnemyMovement1 : MonoBehaviour
         {
             Destroy(this.gameObject);
 
-            
+
 
         }
 
@@ -33,18 +67,11 @@ public class EnemyMovement1 : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(other.gameObject);
-            
+
         }
 
-        
+
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        SceneManager.LoadScene("LucianosMainMenu");
-    //        Debug.Log("fick dich flo");
-    //    }
-    //}
 
 }
+
