@@ -2356,6 +2356,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4088491356884276890, guid: b8bd748384e7b3c42b16359b93d35fd1, type: 3}
+      propertyPath: wallJump
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088491356884276890, guid: b8bd748384e7b3c42b16359b93d35fd1, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}

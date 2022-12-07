@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool gameOver = false;
     public bool isOnGround = true;
-    public bool isOnAir = true;
+    public bool isOnAir = false;
     public bool crouch = false;
     private LayerMask groundLayer;
 
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float horizontalInput;
     public float gravityModifier;
+    Vector3 normal;
 
     public float crouchSpeed;
     private Vector3 crouchHigh = new Vector3(0f, 0.7f, 0f);
@@ -51,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Jump")]
     public bool isOnWall = false;
+    public float wallJump;
+    public bool grounded = true;
     
     void Start()
     {
@@ -79,14 +82,18 @@ public class PlayerMovement : MonoBehaviour
                 playerRb.velocity = Vector3.zero;
                 playerRb.angularVelocity = Vector3.zero;
                 playerRb.useGravity = false;
+                grounded = false;
+                if (isOnWall && Input.GetKeyDown(KeyCode.Space))
+                {
+                    isOnWall = false;
+                    playerRb.useGravity = true;
+                    playerRb.AddRelativeForce(-10, 20, 0, ForceMode.Impulse);
+                    transform.eulerAngles = this.transform.eulerAngles + new Vector3(0, 180, 0);
 
-                //if ()
-                //{
-
-                //}
+                }
 
             }
-            if (!isOnWall)
+            if (!isOnWall && grounded)
             {
                 transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
             }
@@ -97,12 +104,12 @@ public class PlayerMovement : MonoBehaviour
 
            // flipp the player sprite
 
-            if(horizontalInput < 0 && !isOnWall)
+            if(horizontalInput < 0 && !isOnWall && grounded)
             {
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f,  180f , 0f));
             }
             
-            if (horizontalInput > 0 && !isOnWall)
+            if (horizontalInput > 0 && !isOnWall && grounded)
             {
                  this.transform.rotation = Quaternion.Euler(new Vector3(0f,  0f, 0f));
 
@@ -121,11 +128,11 @@ public class PlayerMovement : MonoBehaviour
                 isOnGround = false;
                // isOnAir = true;
             }
-            // let the player dubble jump with the isOnAir condition
+                    // let the player dubble jump with the isOnAir condition
             // else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
             //{
-                //playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-               // isOnAir = false;
+            //    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            //    isOnAir = false;
 
             //}
             // shifts the scale of the Player charakter for a bether coruch animation
@@ -179,11 +186,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-
+            grounded = true;
+           
         }
         else if (collision.gameObject.CompareTag("Wall") && !isOnGround)
         {
             isOnWall = true;
+            
         }
         
     }
@@ -250,6 +259,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(throwTime);
         canThrow = true;
     }
-
+    
 
 }
