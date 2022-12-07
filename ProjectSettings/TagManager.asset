@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - Sword
+  - Ground
+  - Wall
   - Item
   - Enemy
-  - NinjaStern
   layers:
   - Default
   - TransparentFX
