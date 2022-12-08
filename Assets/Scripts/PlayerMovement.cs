@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator NinjaStardAttack()
     {
         canThrow = false;
-        Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
+        Instantiate(ninjaStar, transform.position, playerRb.transform.rotation );
         yield return new WaitForSeconds(throwTime);
         canThrow = true;
     }
