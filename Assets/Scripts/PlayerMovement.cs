@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall)
+            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch)
             {
                 NinjaStarAbility();
             }
@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator NinjaStardAttack()
     {
         canThrow = false;
-        Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
+        Instantiate(ninjaStar, transform.position, playerRb.transform.rotation );
         yield return new WaitForSeconds(throwTime);
         canThrow = true;
     }
