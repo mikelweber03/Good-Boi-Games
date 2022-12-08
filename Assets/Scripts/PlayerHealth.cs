@@ -9,9 +9,9 @@ public class PlayerHealth : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    public int _maxHealth;
+    public int _maxHealth = 3;
     private int _currentHealth;
-    private bool death = false;
+    public DeathMenu deathmenu;
     public CheckHealth _healthBar;
     void Start()
     {
@@ -19,23 +19,21 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        _healthBar.ChangeHealth(_currentHealth);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (_currentHealth > 0) 
+            if (_currentHealth > 1) 
             {
                 _currentHealth--;
+                _healthBar.ChangeHealth(_currentHealth);
                 Debug.Log(_currentHealth);
             }
             else
             {
-                death = true;
+                _currentHealth--;
+                _healthBar.ChangeHealth(_currentHealth);
+                deathmenu.ToggleEndMenu();
             }
         }
     }
