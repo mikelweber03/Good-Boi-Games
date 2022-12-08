@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall)
+            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch)
             {
                 NinjaStarAbility();
             }

@@ -10,18 +10,18 @@ public class EnemyMovement1 : MonoBehaviour
     [SerializeField]
     private Vector3 target;
     bool goal = true;
-    int dmg;
-    
+
+    private Vector3 start;
     public BoxCollider playerBoxCollider;
     // Start is called before the first frame update
     void Start()
     {
-        dmg = 1;
+        start.x = transform.position.x;
 
         playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
-    
-     //Update is called once per frame
+
+    //Update is called once per frame
     void Update()
     {
         if (transform.position.x < target.x)
@@ -31,16 +31,27 @@ public class EnemyMovement1 : MonoBehaviour
 
         if (goal == true)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
-        }
-        else
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-          
-        }
-        
-        
             
+            
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            
+                
+            
+        }
+        else 
+        {
+            if (transform.position.x <= start.x)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+            }
+            else
+                goal = true;
+            
+        }
+
+        
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -48,7 +59,7 @@ public class EnemyMovement1 : MonoBehaviour
         {
             Destroy(this.gameObject);
 
-            
+
 
         }
 
@@ -56,34 +67,11 @@ public class EnemyMovement1 : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(other.gameObject);
-            
+
         }
 
-        
-    }
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            
-            TakeDmg();
-            //Debug.Log(collision.contactCount);
-            //Debug.Log(GameManager.gameManager._playerHealth.Health);
-        }
-        
-        
-    }
 
-    IEnumerator TakeDmg()
-    {
-        
-        //GameManager.gameManager._playerHealth.DmgUnit(dmg);
-        //Debug.Log(GameManager.gameManager._playerHealth.Health);
-       // playerBoxCollider.enabled = false;
-        yield return new WaitForSeconds(1);
-        //playerBoxCollider.enabled = true;
-        Debug.Log(GameManager.gameManager._playerHealth.Health);
     }
 
 }
+
