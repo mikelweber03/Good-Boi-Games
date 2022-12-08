@@ -9,6 +9,8 @@ TagManager:
   - Wall
   - Item
   - Enemy
+  - NinjaStern
+  - LootBox
   layers:
   - Default
   - TransparentFX
