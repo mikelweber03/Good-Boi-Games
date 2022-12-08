@@ -5,19 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class EnemyMovement1 : MonoBehaviour
 {
-    public GameObject enemy;
-    public float enemySpeed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Vector3 target;
+    bool goal = true;
+    int dmg;
+    
+    public BoxCollider playerBoxCollider;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(enemy, 30);
-    }
+        dmg = 1;
 
-    // Update is called once per frame
+        playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
+    }
+    
+     //Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime *  - enemySpeed);
+        if (transform.position.x < target.x)
+        {
+            goal = false;
+        }
 
+        if (goal == true)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+        }
+        else
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+          
+        }
+        
+        
+            
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,13 +61,29 @@ public class EnemyMovement1 : MonoBehaviour
 
         
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        SceneManager.LoadScene("LucianosMainMenu");
-    //        Debug.Log("fick dich flo");
-    //    }
-    //}
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            
+            TakeDmg();
+            //Debug.Log(collision.contactCount);
+            //Debug.Log(GameManager.gameManager._playerHealth.Health);
+        }
+        
+        
+    }
+
+    IEnumerator TakeDmg()
+    {
+        
+        //GameManager.gameManager._playerHealth.DmgUnit(dmg);
+        //Debug.Log(GameManager.gameManager._playerHealth.Health);
+       // playerBoxCollider.enabled = false;
+        yield return new WaitForSeconds(1);
+        //playerBoxCollider.enabled = true;
+        Debug.Log(GameManager.gameManager._playerHealth.Health);
+    }
 
 }
