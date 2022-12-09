@@ -7,6 +7,7 @@ public class LootBoxScript : MonoBehaviour
     private int health = 3;
     public AudioSource Boxhit;
     public GameObject crate_Des;
+    public Material boxMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +30,15 @@ public class LootBoxScript : MonoBehaviour
 
 
 
-
-                    if (health == 0)
+            if (health == 1)
+            {
+                this.GetComponent<MeshRenderer>().material = boxMaterial;
+            }
+            if (health == 0)
                     {
-                    
-                    
-                    Destroy(gameObject);
+
+                BoxSwap();
+                Destroy(gameObject);
                     Debug.Log("Death");
                     }
 
@@ -47,7 +51,10 @@ public class LootBoxScript : MonoBehaviour
                     Destroy(other.gameObject);
 
 
-
+            if(health == 1)
+            {
+                this.GetComponent<MeshRenderer>().material = boxMaterial;
+            }
                     if (health == 0)
                     {
 
