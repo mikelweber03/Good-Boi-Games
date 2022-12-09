@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3812752066119780861}
   - component: {fileID: 235953378075330136}
   - component: {fileID: 2639867018327306898}
+  - component: {fileID: -384147375212613118}
   m_Layer: 0
   m_Name: shuriken
   m_TagString: Untagged
@@ -84,3 +85,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!111 &-384147375212613118
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585312450681017159}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 6103808884111253704, guid: 619317d4a20815447940532e9f2c615c, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
