@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;
         movementSpeed = dashSpeed;
+        transform.position = transform.position + new Vector3();
         yield return new WaitForSeconds(dashingTime);
         movementSpeed = 10f;
         yield return new WaitForSeconds(timeBtweDashes);
