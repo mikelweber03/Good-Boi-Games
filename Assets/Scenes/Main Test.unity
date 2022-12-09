@@ -4538,6 +4538,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4088491356884276890, guid: b8bd748384e7b3c42b16359b93d35fd1, type: 3}
+      propertyPath: ninjaStar
+      value: 
+      objectReference: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
+    - target: {fileID: 4088491356884276890, guid: b8bd748384e7b3c42b16359b93d35fd1, type: 3}
       propertyPath: throwTime
       value: 0.8
       objectReference: {fileID: 0}
