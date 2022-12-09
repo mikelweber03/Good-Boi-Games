@@ -11,6 +11,10 @@ TagManager:
   - Enemy
   - NinjaStern
   - LootBox
+  - Heart1
+  - Heart2
+  - Heart3
+  - HealthPickup
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Gohst
   - 
   - 
   - 

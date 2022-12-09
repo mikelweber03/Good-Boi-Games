@@ -12,23 +12,22 @@ public class EnemyMovement1 : MonoBehaviour
     bool goal = true;
 
     private Vector3 start;
-    public BoxCollider playerBoxCollider;
-    // Start is called before the first frame update
+   // public BoxCollider playerBoxCollider;
     void Start()
     {
         start.x = transform.position.x;
 
-        playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
+       // playerBoxCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider>();
     }
 
-    //Update is called once per frame
+    
     void Update()
-    {
+    {   //If the enemy is at the target vector, set goal to false
         if (transform.position.x < target.x)
         {
             goal = false;
         }
-
+        //If the nemy isn't at target vector, make him go left towards it
         if (goal == true)
         {
             
