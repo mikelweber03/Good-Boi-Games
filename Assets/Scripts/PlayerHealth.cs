@@ -18,7 +18,8 @@ public class PlayerHealth : MonoBehaviour
         _currentHealth = _maxHealth;
 
     }
-
+    //Check if player can loose health
+    //if he can then make them loose one and update healthbar
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
