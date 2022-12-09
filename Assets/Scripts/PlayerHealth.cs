@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     public int _maxHealth = 3;
     private int _currentHealth;
@@ -36,23 +35,21 @@ public class PlayerHealth : MonoBehaviour
                 _healthBar.ChangeHealth(_currentHealth);
                 deathmenu.ToggleEndMenu();
             }
-        }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("HealthPickup"))
+        }
+        //If Healthpickup then regen health and destroy pickup
+        if (collision.gameObject.CompareTag("HealthPickup"))
         {
-            
-            if(_currentHealth < _maxHealth)
+            if (_currentHealth < _maxHealth)
             {
                 _currentHealth++;
                 _healthBar.ChangeHealth(_currentHealth);
-                Destroy(other.gameObject);
+                Destroy(collision.gameObject);
             }
-            
+
         }
     }
 
+ 
 
 }

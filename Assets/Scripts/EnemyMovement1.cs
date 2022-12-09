@@ -13,7 +13,6 @@ public class EnemyMovement1 : MonoBehaviour
 
     private Vector3 start;
    // public BoxCollider playerBoxCollider;
-    // Start is called before the first frame update
     void Start()
     {
         start.x = transform.position.x;

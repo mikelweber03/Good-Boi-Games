@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class DestroyLantern : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject spawnHP;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Destroys Lantern if hit by sword or Shuriken and spawns health pickup
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword")
         {
             Destroy(this.gameObject);
 
-
+            //float f = Random.Range(1, 2);
+            //if(f < 2)
+            //{
+            Instantiate(spawnHP, transform.position, transform.rotation );
+            //}
 
         }
 
@@ -30,7 +29,11 @@ public class DestroyLantern : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(other.gameObject);
-
+           // float f = Random.Range(1, 2);
+           // if (f < 2)
+          //  {
+                Instantiate(spawnHP, this.gameObject.transform);
+           // }
         }
 
 
