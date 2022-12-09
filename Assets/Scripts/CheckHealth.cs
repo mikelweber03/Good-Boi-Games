@@ -20,7 +20,7 @@ public class CheckHealth : MonoBehaviour
     }
     public void ChangeHealth(int currentHealth)
     {
-        
+        //Checks at what health the player should be and displays it
         if(currentHealth == 3)
         {
             _heart1.sprite = _heart.sprite;
