@@ -113,7 +113,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3863530706198823353}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.8340001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -200,7 +200,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 124
   m_CollisionDetection: 1
 --- !u!136 &2327212420913295778
 CapsuleCollider:
@@ -236,13 +236,14 @@ MonoBehaviour:
   movementSpeed: 10
   jumpForce: 20
   horizontalInput: 0
+  verticalInput: 0
   gravityModifier: 5
   crouchSpeed: 0
   swortMeshRenderer: {fileID: 4703786913746012261}
   swortBoxCollider: {fileID: 4703786913746012260}
   atackTime: 0.3
   atackCoolDown: 0.3
-  ninjaStar: {fileID: 1239089398266861769, guid: ac221cc1872b70740bd2812d03cd2fc9, type: 3}
+  ninjaStar: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
   canThrow: 1
   throwTime: 0.8
   canDash: 1
@@ -250,6 +251,10 @@ MonoBehaviour:
   dashSpeed: 500
   dashingTime: 0.5
   startDashTime: 0
+  isOnWall: 0
+  wallJump: 0
+  grounded: 1
+  climping: 0
 --- !u!1001 &2327212420192894478
 PrefabInstance:
   m_ObjectHideFlags: 0

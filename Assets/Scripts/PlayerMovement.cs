@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool gameOver = false;
     public bool isOnGround = true;
-    public bool isOnAir = false;
+    //public bool isOnAir = false;
     public bool crouch = false;
     private LayerMask groundLayer;
 
@@ -120,11 +120,12 @@ public class PlayerMovement : MonoBehaviour
                 NinjaStarAbility();
             }
             
-            // let the Player Jump and anables the dubble jump
+            // let the Player Jump 
             if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
+                Debug.Log("fuck you game");
                // isOnAir = true;
             }
                     // let the player dubble jump with the isOnAir condition
