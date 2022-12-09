@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall)
+            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch)
             {
                 NinjaStarAbility();
             }
@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;
         movementSpeed = dashSpeed;
+        transform.position = transform.position + new Vector3();
         yield return new WaitForSeconds(dashingTime);
         movementSpeed = 10f;
         yield return new WaitForSeconds(timeBtweDashes);
@@ -262,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator NinjaStardAttack()
     {
         canThrow = false;
-        Instantiate(ninjaStar, transform.position, ninjaStar.transform.rotation);
+        Instantiate(ninjaStar, transform.position, playerRb.transform.rotation );
         yield return new WaitForSeconds(throwTime);
         canThrow = true;
     }
