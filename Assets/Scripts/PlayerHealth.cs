@@ -43,9 +43,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("HealthPickup"))
         {
+            
             if(_currentHealth < _maxHealth)
             {
                 _currentHealth++;
+                _healthBar.ChangeHealth(_currentHealth);
+                Destroy(other.gameObject);
             }
             
         }
