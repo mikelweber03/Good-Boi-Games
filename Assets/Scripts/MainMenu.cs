@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        //SceneManager.LoadScene("MikelPrototyp");
         SceneManager.LoadScene("LucianosWorkSpace");
     }
 
