@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public float throwTime;
 
     [Header("Dashing")]
+    public ParticleSystem smoke;
     public bool dashJump;
     public SpriteRenderer nagatoSprite;
     public SpriteRenderer cloud;
@@ -236,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
         dashBlock = true;
         canDash = false;
         nagatoSprite.enabled = false;
+        smoke.Play();
         yield return new WaitForSeconds(0.05f);
         cloud.enabled = true;
         playerRb.velocity = Vector3.zero;

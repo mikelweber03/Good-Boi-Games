@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3454328133349013070, guid: edd59965b59bb4b4ea1af04ce38721d2, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3454328133349013070, guid: edd59965b59bb4b4ea1af04ce38721d2, type: 3}
       propertyPath: m_LocalScale.x
@@ -737,7 +737,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0.417, y: 0, z: 0}
 --- !u!114 &473204204
 MonoBehaviour:
@@ -1592,21 +1592,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1096581678}
     - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 2642252908749197785, guid: 158cd1dfdecf4a74b8352fa2323c3d23, type: 3}
+    - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: climping
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: dashDelay
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: dashForce
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: floatTime
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
+      propertyPath: ninjaStar
+      value: 
+      objectReference: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
     - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: dashingTime
       value: 0.2
