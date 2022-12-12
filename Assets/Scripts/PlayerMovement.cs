@@ -127,7 +127,9 @@ public class PlayerMovement : MonoBehaviour
             // sprung nach dem dash
         if (Input.GetKeyDown(KeyCode.Space) && dashJump && !crouch && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !crouch && !isOnWall && !isOnGround)
         {
-            floatTime = false;
+            
+            playerRb.useGravity = true;
+            dashBlock = false;
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             dashJump = false;
             
@@ -237,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
         dashBlock = true;
         canDash = false;
         nagatoSprite.enabled = false;
-        smoke.Play();
+        //smoke.Play();
         yield return new WaitForSeconds(0.05f);
         cloud.enabled = true;
         playerRb.velocity = Vector3.zero;
@@ -250,26 +252,13 @@ public class PlayerMovement : MonoBehaviour
         playerRb.angularVelocity = Vector3.zero;
         yield return new  WaitForSeconds(0.05f);
         nagatoSprite.enabled = true;
-        yield return new WaitForSeconds(dashDelay);
-        //FloatEnd();
-        dashBlock = false;
         dashJump = true;
-
-        //yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
+        dashBlock = false;
         playerRb.useGravity = true;
         yield return new WaitForSeconds(timeBtweDashes);
         canDash = true;    
     }
-
-
-
-    //private void FloatEnd()
-    //{
-    //    do
-    //    {
-    //       playerRb.useGravity = false;
-    //    } while (floatTime);  
-    //}
 
     void SwordAbility()
     {
