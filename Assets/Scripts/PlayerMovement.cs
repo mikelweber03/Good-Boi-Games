@@ -75,11 +75,15 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        // let the Player shoot a Ninja Star
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && !crouch)
+        {
+            NinjaStarAbility();
+        }
 
 
-        
         // macht die mögliochkeiten um an der wand zu kleben sowie einen walljump
-            if (isOnWall)
+        if (isOnWall)
             {
                 playerRb.velocity = Vector3.zero;
                 playerRb.angularVelocity = Vector3.zero;
@@ -96,7 +100,18 @@ public class PlayerMovement : MonoBehaviour
 
                 }
 
+
+                // release from wall
+                else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {  
+                playerRb.useGravity = true;
+                playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
+                isOnWall = false;
+                grounded = true;
+
             }
+
+        }
             if (!isOnWall && grounded && !dashBlock)
             {
                 transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
@@ -119,24 +134,21 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && !crouch)
-            {
-                NinjaStarAbility();
-            }
-            // sprung nach dem dash
+        
+        // sprung nach dem dash
         if (Input.GetKeyDown(KeyCode.Space) && dashJump && !crouch && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !crouch && !isOnWall && !isOnGround)
         {
             
             playerRb.useGravity = true;
             dashBlock = false;
+            grounded = true;
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             dashJump = false;
             
         }
 
             // let the Player Jump 
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
+            else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
@@ -255,6 +267,7 @@ public class PlayerMovement : MonoBehaviour
         dashJump = true;
         yield return new WaitForSeconds(0.3f);
         dashBlock = false;
+        grounded = true;
         playerRb.useGravity = true;
         yield return new WaitForSeconds(timeBtweDashes);
         canDash = true;    
