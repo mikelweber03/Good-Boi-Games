@@ -29,11 +29,12 @@ public class DestroyLantern : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(other.gameObject);
-           // float f = Random.Range(1, 2);
-           // if (f < 2)
-          //  {
-                Instantiate(spawnHP, this.gameObject.transform);
-           // }
+            // float f = Random.Range(1, 2);
+            // if (f < 2)
+            //  {
+            Instantiate(spawnHP, transform.position, transform.rotation);
+            //Instantiate(spawnHP, this.gameObject.transform);
+            // }
         }
 
 
