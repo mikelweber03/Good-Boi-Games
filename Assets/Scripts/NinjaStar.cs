@@ -7,10 +7,7 @@ public class NinjaStar : MonoBehaviour
     public float starSpeed;
     public float rotationSpeed;
     private Rigidbody ninjaStar;
-   // public new Vector3(1,0,0) rotation;
-    public float rotx;
-    public float roty;
-    public float rotz;
+ 
 
     // Start is called before the first frame update
     void Start()
