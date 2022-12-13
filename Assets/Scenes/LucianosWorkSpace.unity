@@ -1575,6 +1575,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2327212420913295780, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
+      propertyPath: ninjaStar
+      value: 
+      objectReference: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
     - target: {fileID: 3863530706198823351, guid: 66d596ed5b619bc42bf9671a6fca22ca, type: 3}
       propertyPath: m_RootOrder
       value: 17
