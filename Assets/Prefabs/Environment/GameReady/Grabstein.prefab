@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7834621939025139373}
   - component: {fileID: 4716612195107226900}
   - component: {fileID: 9077749623390413315}
+  - component: {fileID: 1194096526}
+  - component: {fileID: 1194096525}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -40,13 +42,13 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757272919429101886}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 13.822176
-  m_Range: 3.23
+  m_Color: {r: 0.33620068, g: 0.15566039, b: 1, a: 1}
+  m_Intensity: 159.15494
+  m_Range: 43
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -88,7 +90,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 2.96
-  m_ColorTemperature: 6570
+  m_ColorTemperature: 6979
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -107,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 173.6946
+  m_Intensity: 2000
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -217,6 +219,31 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!65 &1194096526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757272919429101886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.461369, y: 11.620858, z: 7.1252933}
+  m_Center: {x: -0.116975784, y: 1.0938764, z: -3.0626466}
+--- !u!114 &1194096525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757272919429101886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d293ab1de6c8a44bdbdbc46d429a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3540735062216411193
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +255,7 @@ GameObject:
   - component: {fileID: 4208868298820833923}
   - component: {fileID: 992829305946987814}
   - component: {fileID: 3036494563796691436}
+  - component: {fileID: 847845141}
   m_Layer: 0
   m_Name: Grabstein
   m_TagString: Untagged
@@ -242,7 +270,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3540735062216411193}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 36.177456, y: 32.899796, z: -263.00098}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -301,3 +329,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &847845141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540735062216411193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 4.1189904, y: 9.009419, z: 4.3090057}
+  m_Center: {x: -0.031685114, y: 4.3648896, z: 0.0059604645}
