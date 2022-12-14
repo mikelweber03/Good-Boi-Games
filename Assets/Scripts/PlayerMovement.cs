@@ -142,8 +142,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
-                Debug.Log("fuck you game");
-               // isOnAir = true;
+                
             }
                     
             //let the Player Dash
