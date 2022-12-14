@@ -12,18 +12,18 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 playerPosition;
     private Rigidbody playerRb;
     
-    public float movementSpeed;
-    public float jumpForce;
-    public float horizontalInput;
-    public float verticalInput;
-    public float gravityModifier;
+    private float movementSpeed = 15f;
+    private float jumpForce = 26f;
+    private float horizontalInput;
+    private float verticalInput;
+    private float gravityModifier = 5f;
 
     [Header("swordAtack")]
     public MeshRenderer swortMeshRenderer;
     public BoxCollider swortBoxCollider;
     bool canAtack = true;
-    public float atackTime;
-    public float atackCoolDown;
+    private float atackTime = 0.4f;
+    private float atackCoolDown = 0.3f;
 
     [Header("NinjaStar")]
     public GameObject ninjaStar;
@@ -33,22 +33,23 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dashing")]
     public ParticleSystem smoke;
     public bool dashJump;
+    private float dashJumpForce = 24f;
     public SpriteRenderer nagatoSprite;
     public SpriteRenderer cloud;
     public bool dashBlock = false;
     public bool canDash = true;
-    public float timeBtweDashes;
-    public float dashForce;
-    public float dashingTime;
-    public float dashDelay;
-    public float dashJumpTime;
+    private float timeBtweDashes = 1.75f;
+    private float dashForce = 60f;
+    private float dashingTime = 0.2f;
+    //private float dashDelay = 0.2f;
+    //public float dashJumpTime;
     public bool floatTime = true;
 
     [Header("Wall Jump")]
     public bool isOnWall = false;
-    public float wallJump;
+    //private float wallJump;
     public bool grounded = true;
-    public float climping;
+    private float climping = 5f;
     
     void Start()
     { 
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             dashBlock = false;
             grounded = true;
             isOnGround = false;
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * dashJumpForce, ForceMode.Impulse);
             dashJump = false;
             
         }
