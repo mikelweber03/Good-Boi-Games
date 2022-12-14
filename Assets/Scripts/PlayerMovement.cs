@@ -7,25 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool gameOver = false;
     public bool isOnGround = true;
-    //public bool isOnAir = false;
     public bool crouch = false;
-    private LayerMask groundLayer;
 
     public Vector3 playerPosition;
     private Rigidbody playerRb;
-    private BoxCollider boxCollider;
     
     public float movementSpeed;
     public float jumpForce;
     public float horizontalInput;
     public float verticalInput;
     public float gravityModifier;
-   
-
-    public float crouchSpeed;
-    private Vector3 crouchHigh = new Vector3(0f, 0.7f, 0f);
-    private Vector3 crouchScale = new Vector3(1f, 0.4f, 1f);
-    private Vector3 standingScale = new Vector3(1, 1, 1);
 
     [Header("swordAtack")]
     public MeshRenderer swortMeshRenderer;
@@ -40,11 +31,18 @@ public class PlayerMovement : MonoBehaviour
     public float throwTime;
 
     [Header("Dashing")]
+    public ParticleSystem smoke;
+    public bool dashJump;
+    public SpriteRenderer nagatoSprite;
+    public SpriteRenderer cloud;
+    public bool dashBlock = false;
     public bool canDash = true;
     public float timeBtweDashes;
-    public float dashSpeed;
+    public float dashForce;
     public float dashingTime;
-    public float startDashTime;
+    public float dashDelay;
+    public float dashJumpTime;
+    public bool floatTime = true;
 
     [Header("Wall Jump")]
     public bool isOnWall = false;
@@ -53,15 +51,9 @@ public class PlayerMovement : MonoBehaviour
     public float climping;
     
     void Start()
-    {
-        
+    { 
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
-        dashingTime = startDashTime;
-        boxCollider = GetComponent<BoxCollider>();
-
-
-
     }
 
     
@@ -71,18 +63,23 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-
-
-        if (!gameOver)
+        // let the Player shoot a Ninja Star
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && !crouch)
         {
-            if (isOnWall)
+            NinjaStarAbility();
+        }
+
+
+        // macht die mögliochkeiten um an der wand zu kleben sowie einen walljump
+        if (isOnWall)
             {
                 playerRb.velocity = Vector3.zero;
                 playerRb.angularVelocity = Vector3.zero;
                 playerRb.useGravity = false;
                 grounded = false;
+                dashJump = false;
                 transform.Translate(Vector3.up * verticalInput * Time.deltaTime * climping);
-                if (isOnWall && Input.GetKeyDown(KeyCode.Space))
+                if (isOnWall && Input.GetKeyDown(KeyCode.Space) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button0))
                 {
                     isOnWall = false;
                     playerRb.useGravity = true;
@@ -91,8 +88,19 @@ public class PlayerMovement : MonoBehaviour
 
                 }
 
+
+                // release from wall
+                else if (isOnWall && Input.GetKeyDown(KeyCode.Q) || isOnWall && Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {  
+                playerRb.useGravity = true;
+                playerRb.AddRelativeForce(-1, 3, 0, ForceMode.Impulse);
+                isOnWall = false;
+                grounded = true;
+
             }
-            if (!isOnWall && grounded)
+
+        }
+            if (!isOnWall && grounded && !dashBlock)
             {
                 transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
             }
@@ -114,51 +122,37 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            // let the Player shoot a Ninja Star
-            if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch)
-            {
-                NinjaStarAbility();
-            }
+        
+        // sprung nach dem dash
+        if (Input.GetKeyDown(KeyCode.Space) && dashJump && !crouch && !isOnWall && !isOnGround || Input.GetKeyDown(KeyCode.Joystick1Button0) && dashJump && !crouch && !isOnWall && !isOnGround)
+        {
             
+            playerRb.useGravity = true;
+            dashBlock = false;
+            grounded = true;
+            isOnGround = false;
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            dashJump = false;
+            
+        }
+
             // let the Player Jump 
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall)
+            else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 Debug.Log("fuck you game");
                // isOnAir = true;
             }
-                    // let the player dubble jump with the isOnAir condition
-            // else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
-            //{
-            //    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //    isOnAir = false;
-
-            //}
-            // shifts the scale of the Player charakter for a bether coruch animation
-            if (Input.GetKeyDown(KeyCode.S) && isOnGround && !crouch && !isOnWall)
-            {
-                crouch = true;
-                this.transform.localScale = crouchScale;
-                this.transform.localPosition = playerPosition - crouchHigh;
-
-            }
-            // Shifts the scale back after crouch
-            else if (Input.GetKeyUp(KeyCode.S) && crouch)
-            {
-                crouch = false;
-                this.transform.localScale = standingScale;
-                this.transform.localPosition = playerPosition + crouchHigh;
-            }
-
+                    
             //let the Player Dash
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button4) && !crouch)
             {
                 DashAbility();
             }
 
                 // Sword atack
-            if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall)
+            if (Input.GetKeyDown(KeyCode.E) && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button2) && !crouch)
             {
                 SwordAbility();
                 
@@ -168,16 +162,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 SceneManager.LoadScene("LucianosWorkSpace");
             }
-            //else if (!isOnGround)
-            //{
-            //    crouch = false;
-            //    this.transform.localScale = standingScale;
-            //    this.transform.localPosition = playerPosition + crouchHigh;
-            //}
-        }
-        
-
-        
+            
 
     }
 
@@ -187,17 +172,19 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            dashJump = false;
             grounded = true;
            
         }
         else if (collision.gameObject.CompareTag("Wall") && !isOnGround)
         {
             isOnWall = true;
+            dashJump = false;
             
         }
         
     }
-
+        // check ob spieler an der wand ist
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -219,15 +206,31 @@ public class PlayerMovement : MonoBehaviour
     // Coroutine for the dash
     IEnumerator Dash()
     {
+        dashBlock = true;
         canDash = false;
-        movementSpeed = dashSpeed;
-        transform.position = transform.position + new Vector3();
+        nagatoSprite.enabled = false;
+        //smoke.Play();
+        yield return new WaitForSeconds(0.05f);
+        cloud.enabled = true;
+        playerRb.velocity = Vector3.zero;
+        playerRb.angularVelocity = Vector3.zero;
+        playerRb.useGravity = false;
+        playerRb.AddRelativeForce(dashForce, 0, 0, ForceMode.Impulse);
         yield return new WaitForSeconds(dashingTime);
-        movementSpeed = 10f;
+        cloud.enabled = false;
+        playerRb.velocity = Vector3.zero;
+        playerRb.angularVelocity = Vector3.zero;
+        yield return new  WaitForSeconds(0.05f);
+        nagatoSprite.enabled = true;
+        dashJump = true;
+        yield return new WaitForSeconds(0.3f);
+        dashBlock = false;
+        grounded = true;
+        playerRb.useGravity = true;
         yield return new WaitForSeconds(timeBtweDashes);
-        canDash = true;
+        canDash = true;    
+    }
 
-        }
     void SwordAbility()
     {
         if (canAtack)

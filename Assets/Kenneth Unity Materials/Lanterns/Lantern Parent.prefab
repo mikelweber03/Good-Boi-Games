@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8289311019988858467}
+  - component: {fileID: 1160663489}
+  - component: {fileID: 1160663487}
   m_Layer: 0
   m_Name: Lantern Parent
   m_TagString: Untagged
@@ -32,6 +34,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1160663489
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289311019988858466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.47506177
+  m_Height: 1.6031101
+  m_Direction: 1
+  m_Center: {x: 1.418442, y: 1.5909528, z: 0}
+--- !u!114 &1160663487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289311019988858466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4e3abcd195bef41842a5518756010e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnHP: {fileID: 5355845468600255581, guid: 394ff354f89031a4aa63c2530f1be8a1, type: 3}
 --- !u!1 &8289311020782400288
 GameObject:
   m_ObjectHideFlags: 0
