@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2168489527810102752}
   - component: {fileID: 3006115547227724357}
   - component: {fileID: 1032214232568524431}
+  - component: {fileID: 1486356181}
+  - component: {fileID: 1486356180}
   m_Layer: 0
   m_Name: Glasscherbe
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536806163079155546}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.0335579, y: -3.423267, z: -114.829956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83,3 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1486356181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536806163079155546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1459732, y: 5.758711, z: 9.821956}
+  m_Center: {x: -23.010527, y: -0.010603666, z: 0.7339215}
+--- !u!114 &1486356180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536806163079155546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ad69aabfbe7a542885dda37da044ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenWindow: {fileID: 959055522708373959, guid: b7b789710007d8d4ab02ee2e418cc0d9, type: 3}
