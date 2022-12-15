@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 7777790188044410225}
   - component: {fileID: 9089861773036989794}
   - component: {fileID: 9089861773036989796}
+  - component: {fileID: 1776282551}
   m_Layer: 0
   m_Name: Nagato
   m_TagString: Player
@@ -233,15 +234,8 @@ MonoBehaviour:
   isOnGround: 1
   crouch: 0
   playerPosition: {x: 0, y: 0, z: 0}
-  movementSpeed: 10
-  jumpForce: 20
-  horizontalInput: 0
-  verticalInput: 0
-  gravityModifier: 5
   swortMeshRenderer: {fileID: 2245452350420030629}
   swortBoxCollider: {fileID: 2245452350420030628}
-  atackTime: 0.3
-  atackCoolDown: 0.3
   ninjaStar: {fileID: 4585312450681017159, guid: ae32270169e7ad4459ea836409c0c0ee, type: 3}
   canThrow: 1
   throwTime: 0.8
@@ -251,16 +245,25 @@ MonoBehaviour:
   cloud: {fileID: 6804453340436553454}
   dashBlock: 0
   canDash: 1
-  timeBtweDashes: 2
-  dashForce: 60
-  dashingTime: 0.2
-  dashDelay: 0.2
-  dashJumpTime: 0
   floatTime: 0
   isOnWall: 0
-  wallJump: 0
   grounded: 1
-  climping: 3
+--- !u!114 &1776282551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777790188044410233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fce5cec7a1c3549a874879f7a507e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  deathmenu: {fileID: 0}
+  _healthBar: {fileID: 0}
+  player: {fileID: 7777790188044410233}
 --- !u!1 &9089861773668170088
 GameObject:
   m_ObjectHideFlags: 0
