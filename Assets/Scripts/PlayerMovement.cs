@@ -12,24 +12,18 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 playerPosition;
     private Rigidbody playerRb;
     
-    public float movementSpeed;
-    public float jumpForce;
-    public float horizontalInput;
-    public float verticalInput;
-    public float gravityModifier;
-   
-
-    //public float crouchSpeed;
-    //private Vector3 crouchHigh = new Vector3(0f, 0.7f, 0f);
-    //private Vector3 crouchScale = new Vector3(1f, 0.4f, 1f);
-    //private Vector3 standingScale = new Vector3(1, 1, 1);
+    private float movementSpeed = 15f;
+    private float jumpForce = 26f;
+    private float horizontalInput;
+    private float verticalInput;
+    private float gravityModifier = 5f;
 
     [Header("swordAtack")]
     public MeshRenderer swortMeshRenderer;
     public BoxCollider swortBoxCollider;
     bool canAtack = true;
-    public float atackTime;
-    public float atackCoolDown;
+    private float atackTime = 0.4f;
+    private float atackCoolDown = 0.3f;
 
     [Header("NinjaStar")]
     public GameObject ninjaStar;
@@ -39,33 +33,28 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dashing")]
     public ParticleSystem smoke;
     public bool dashJump;
+    private float dashJumpForce = 24f;
     public SpriteRenderer nagatoSprite;
     public SpriteRenderer cloud;
     public bool dashBlock = false;
     public bool canDash = true;
-    public float timeBtweDashes;
-    public float dashForce;
-    public float dashingTime;
-    public float dashDelay;
-    public float dashJumpTime;
+    private float timeBtweDashes = 1.75f;
+    private float dashForce = 60f;
+    private float dashingTime = 0.2f;
+    //private float dashDelay = 0.2f;
+    //public float dashJumpTime;
     public bool floatTime = true;
 
     [Header("Wall Jump")]
     public bool isOnWall = false;
-    public float wallJump;
+    //private float wallJump;
     public bool grounded = true;
-    public float climping;
+    private float climping = 5f;
     
     void Start()
-    {
-        
+    { 
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
-        
-        
-
-
-
     }
 
     
@@ -142,7 +131,8 @@ public class PlayerMovement : MonoBehaviour
             playerRb.useGravity = true;
             dashBlock = false;
             grounded = true;
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+            playerRb.AddForce(Vector3.up * dashJumpForce, ForceMode.Impulse);
             dashJump = false;
             
         }
@@ -152,32 +142,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
-                Debug.Log("fuck you game");
-               // isOnAir = true;
+                
             }
-                    // let the player dubble jump with the isOnAir condition
-            // else if (Input.GetKeyDown(KeyCode.Space) && isOnAir && !crouch)
-            //{
-            //    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //    isOnAir = false;
-
-            //}
-            // shifts the scale of the Player charakter for a bether coruch animation
-           // if (Input.GetKeyDown(KeyCode.S) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joy) && isOnGround && !crouch && !isOnWall)
-            //{
-            //    crouch = true;
-            //    this.transform.localScale = crouchScale;
-            //    this.transform.localPosition = playerPosition - crouchHigh;
-
-            //}
-            // Shifts the scale back after crouch
-            //else if (Input.GetKeyUp(KeyCode.S) && crouch)
-            //{
-            //    crouch = false;
-            //    this.transform.localScale = standingScale;
-            //    this.transform.localPosition = playerPosition + crouchHigh;
-            //}
-
+                    
             //let the Player Dash
             if (Input.GetKeyDown(KeyCode.LeftShift) && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button4) && !crouch)
             {
@@ -195,16 +162,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 SceneManager.LoadScene("LucianosWorkSpace");
             }
-            //else if (!isOnGround)
-            //{
-            //    crouch = false;
-            //    this.transform.localScale = standingScale;
-            //    this.transform.localPosition = playerPosition + crouchHigh;
-            //}
-        
-        
-
-        
+            
 
     }
 
