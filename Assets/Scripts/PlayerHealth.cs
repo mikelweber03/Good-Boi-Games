@@ -27,13 +27,14 @@ public class PlayerHealth : MonoBehaviour
             {
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
-                Debug.Log(_currentHealth);
+                
             }
             else
             {
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
                 deathmenu.ToggleEndMenu();
+                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
 
         }
