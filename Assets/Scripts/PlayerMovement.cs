@@ -101,13 +101,17 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+                // Player Movement HorizontalInput
             if (!isOnWall && grounded && !dashBlock)
             {
                 transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
-            }
-            
+            //   playerRb.AddForce(0f,1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
+            //Debug.Log((float)Space.World);
+            //Debug.Log((float)ForceMode.Force);
+        }
 
-            playerPosition = transform.position;
+
+        playerPosition = transform.position;
 
 
            // flipp the player sprite
@@ -142,7 +146,9 @@ public class PlayerMovement : MonoBehaviour
             // let the Player Jump 
             else if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !crouch && !isOnWall || Input.GetKeyDown(KeyCode.Joystick1Button0) && isOnGround && !crouch && !isOnWall)
             {
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerRb.velocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 
             }

@@ -5,11 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/LucianosWorkSpace.unity
+    guid: 3bcc8df29b88fae42931869a1c90875c
   - enabled: 1
     path: Assets/Scenes/LucianosMainMenu.unity
     guid: 893bf037d731e3846a6c03a9d065ef95
   - enabled: 1
-    path: Assets/Scenes/LucianosWorkSpace.unity
-    guid: 3bcc8df29b88fae42931869a1c90875c
+    path: Assets/Scenes/Main Test.unity
+    guid: cc558300534719c4a9345987e16be4fb
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25229bc9c2748be4ab1b1749cc9d2c6f, type: 2}
