@@ -15,6 +15,7 @@ TagManager:
   - Heart2
   - Heart3
   - HealthPickup
+  - Death
   layers:
   - Default
   - TransparentFX

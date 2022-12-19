@@ -12,10 +12,10 @@ public class PlayerHealth : MonoBehaviour
     private int _currentHealth;
     public DeathMenu deathmenu;
     public CheckHealth _healthBar;
+    public GameObject player;
     void Start()
     {
         _currentHealth = _maxHealth;
-
     }
     //Check if player can loose health
     //if he can then make them loose one and update healthbar
@@ -27,13 +27,14 @@ public class PlayerHealth : MonoBehaviour
             {
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
-                Debug.Log(_currentHealth);
+                
             }
             else
             {
                 _currentHealth--;
                 _healthBar.ChangeHealth(_currentHealth);
                 deathmenu.ToggleEndMenu();
+                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
             }
 
         }
@@ -47,6 +48,13 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(collision.gameObject);
             }
 
+        }
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            _currentHealth = 0;
+            _healthBar.ChangeHealth(_currentHealth);
+            deathmenu.ToggleEndMenu();
+            player.GetComponent("PlayerMovement").gameObject.SetActive(false);
         }
     }
 

@@ -132,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
             dashBlock = false;
             grounded = true;
             isOnGround = false;
+            playerRb.velocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
             playerRb.AddForce(Vector3.up * dashJumpForce, ForceMode.Impulse);
             dashJump = false;
             
@@ -142,8 +144,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
-                Debug.Log("fuck you game");
-               // isOnAir = true;
+                
             }
                     
             //let the Player Dash
@@ -224,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new  WaitForSeconds(0.05f);
         nagatoSprite.enabled = true;
         dashJump = true;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         dashBlock = false;
         grounded = true;
         playerRb.useGravity = true;
