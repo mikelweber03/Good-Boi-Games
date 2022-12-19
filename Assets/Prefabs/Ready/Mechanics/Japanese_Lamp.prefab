@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630314554115489396}
   m_LocalRotation: {x: 0.7071068, y: -0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00127}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00145}
   m_LocalScale: {x: 0.001, y: 0, z: 0.0010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,11 +108,11 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630314554115489396}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb0ea016b1a67b44b7eee46a0ed45d2, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8799947, y: 0, z: 0.93475735}
+  m_Size: {x: 0.8799947, y: 0, z: 0.7988116}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7087490407554041547
 GameObject:
@@ -127,9 +127,10 @@ GameObject:
   - component: {fileID: 8744634268716689182}
   - component: {fileID: 5081639901419178342}
   - component: {fileID: 5630314555396800740}
+  - component: {fileID: 8558846120027650677}
   m_Layer: 0
   m_Name: Japanese_Lamp
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +231,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0009618046, y: 0.00094786927, z: 0.0025703989}
   m_Center: {x: 0.0000043340624, y: 0.00000025862457, z: -0.0000790103}
+--- !u!114 &8558846120027650677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087490407554041547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce60b1016ca9954189ab9e51d52bfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRight: 0
+  offsetLeft: 0
+  speed: 1
+  offsetUp: 0
+  offsetDown: 0
+  hasReachedRight: 0
+  hasReachedLeft: 0
+  hasReachedUp: 0
+  hasReachedDown: 0
+  movesHorizontal: 0
 --- !u!1 &7682597094626257462
 GameObject:
   m_ObjectHideFlags: 0
