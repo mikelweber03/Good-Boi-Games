@@ -14,6 +14,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private float textureUnitSizeX;
 
+
     
 
     private void Start()
