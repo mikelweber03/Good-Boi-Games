@@ -28,4 +28,9 @@ public class DeathMenu : MonoBehaviour
         SceneManager.LoadScene("LucianosMainMenu");
         
     }
+
+    public void Continue()
+    {
+
+    }
 }
