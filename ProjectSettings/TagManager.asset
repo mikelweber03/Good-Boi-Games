@@ -16,6 +16,7 @@ TagManager:
   - Heart3
   - HealthPickup
   - Death
+  - CatBullet
   layers:
   - Default
   - TransparentFX

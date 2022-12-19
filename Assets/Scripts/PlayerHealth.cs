@@ -17,10 +17,33 @@ public class PlayerHealth : MonoBehaviour
     {
         _currentHealth = _maxHealth;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("CatBullet"))
+        {
+            if (_currentHealth > 1)
+            {
+                Destroy(other.gameObject);
+                _currentHealth--;
+                _healthBar.ChangeHealth(_currentHealth);
+
+            }
+            else
+            {
+                Destroy(other.gameObject);
+                _currentHealth--;
+                _healthBar.ChangeHealth(_currentHealth);
+                deathmenu.ToggleEndMenu();
+                player.GetComponent("PlayerMovement").gameObject.SetActive(false);
+            }
+        }
+    }
     //Check if player can loose health
     //if he can then make them loose one and update healthbar
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.CompareTag("Enemy"))
         {
             if (_currentHealth > 1) 
