@@ -115,9 +115,9 @@ public class PlayerMovement : MonoBehaviour
             if (!isOnWall && grounded && !dashBlock)
             {
                 //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
-                inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World);
+                //inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World);
                 playerRb.velocity = inputVector;
-            //   playerRb.AddForce(0f,1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
+             playerRb.AddForce(0f,1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
             //Debug.Log((float)Space.World);
             //Debug.Log((float)ForceMode.Force);
         }
