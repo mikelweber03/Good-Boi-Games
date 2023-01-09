@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 833894759}
   - component: {fileID: 833894763}
   m_Layer: 0
-  m_Name: crate_low
+  m_Name: crate_Red
   m_TagString: LootBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

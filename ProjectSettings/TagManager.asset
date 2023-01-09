@@ -17,6 +17,10 @@ TagManager:
   - HealthPickup
   - Death
   - CatBullet
+  - Star2
+  - Star1
+  - Star3
+  - StarPickUp
   layers:
   - Default
   - TransparentFX

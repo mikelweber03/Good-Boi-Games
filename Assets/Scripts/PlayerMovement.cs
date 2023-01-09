@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 playerPosition;
     private Rigidbody playerRb;
+    private Vector3 inputVector;
     
     private float movementSpeed = 15f;
     private float jumpForce = 26f;
@@ -26,7 +27,12 @@ public class PlayerMovement : MonoBehaviour
     private float atackCoolDown = 0.3f;
 
     [Header("NinjaStar")]
+
+    public int maxstarAmont = 3;
+    private int starAmont;
+    public NinjaStarUI starBar;
     public GameObject ninjaStar;
+    public bool gotStar;
     public bool canThrow;
     public float throwTime;
 
@@ -52,9 +58,11 @@ public class PlayerMovement : MonoBehaviour
     private float climping = 5f;
     
     void Start()
-    { 
+    {
+        starAmont = 0;
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+
     }
 
     
@@ -65,11 +73,13 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         // let the Player shoot a Ninja Star
-        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && !crouch)
+        if (Input.GetKeyDown(KeyCode.Q) && !isOnWall && !crouch && gotStar || Input.GetKeyDown(KeyCode.Joystick1Button1) && !isOnWall && gotStar && !crouch)
         {
             NinjaStarAbility();
+            
         }
-
+   
+        
 
         // macht die mögliochkeiten um an der wand zu kleben sowie einen walljump
         if (isOnWall)
@@ -104,7 +114,9 @@ public class PlayerMovement : MonoBehaviour
                 // Player Movement HorizontalInput
             if (!isOnWall && grounded && !dashBlock)
             {
-                transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+                //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed, Space.World);
+                inputVector = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, playerRb.velocity.y, playerRb.velocity.z, Space.World);
+                playerRb.velocity = inputVector;
             //   playerRb.AddForce(0f,1f * horizontalInput * Time.deltaTime * movementSpeed, ((float)Space.World), ((float)ForceMode.Force));
             //Debug.Log((float)Space.World);
             //Debug.Log((float)ForceMode.Force);
@@ -166,16 +178,30 @@ public class PlayerMovement : MonoBehaviour
                 
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                SceneManager.LoadScene("LucianosWorkSpace");
-            }
+            //if (Input.GetKeyDown(KeyCode.M))
+            //{
+            //    SceneManager.LoadScene("LucianosWorkSpace");
+            //}
             
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("StarPickUp"))
+        {
+            Destroy(other.gameObject);
+            starAmont++;
+            gotStar = true;
+            starBar.ChangeStar(starAmont);
+            Debug.Log("pickup");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        
+
         // Check if the player is on hart surves and gives him the ability to jump again
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -264,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
 
     void NinjaStarAbility()
     {
-        if (canThrow)
+        if (canThrow && gotStar)
         {
             StartCoroutine(NinjaStardAttack());
 
@@ -274,6 +300,18 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator NinjaStardAttack()
     {
+        starAmont--;
+        starBar.ChangeStar(starAmont);
+        if (starAmont > 0)
+        {
+            gotStar = true;
+            Debug.Log("gotstar");
+        }
+        else if (starAmont == 0)
+        {
+            gotStar = false;
+            Debug.Log("nostar");
+        }
         canThrow = false;
         Instantiate(ninjaStar, transform.position, playerRb.transform.rotation );
         yield return new WaitForSeconds(throwTime);

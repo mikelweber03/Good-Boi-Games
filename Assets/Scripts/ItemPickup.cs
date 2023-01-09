@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+    public NinjaStarUI starPickup;
     [SerializeField] PickupType itemType;
     private void OnTriggerEnter(Collider collision)
     {
@@ -35,6 +36,9 @@ public class ItemPickup : MonoBehaviour
                 Debug.Log("Hit");
                 Debug.Log(collision.gameObject.name);
                 break;
+            //case PickupType.ninjaStar:
+            //    starPickup.ChangeStar(starAmont);
+            //    break;
             case PickupType.damagepickup:
                 break;
             default:
@@ -46,7 +50,7 @@ public class ItemPickup : MonoBehaviour
     }
     public enum PickupType
     {
-        healthpickup, damagepickup
+        healthpickup, damagepickup, //*ninjaStar,
     }
         
       

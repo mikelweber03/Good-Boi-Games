@@ -7,6 +7,7 @@ public class LootBoxScript : MonoBehaviour
     private int health = 3;
     public AudioSource Boxhit;
     public GameObject crate_Des;
+    public GameObject starPickUp;
     public Material boxMaterial;
 
     // Start is called before the first frame update
@@ -69,6 +70,9 @@ public class LootBoxScript : MonoBehaviour
     private void BoxSwap()
     {
         Instantiate(crate_Des, transform.position, transform.rotation);
+        Instantiate(starPickUp, transform.position, transform.rotation);
+        Instantiate(starPickUp, transform.position, transform.rotation);
+        Instantiate(starPickUp, transform.position, transform.rotation);
     }
 
     }

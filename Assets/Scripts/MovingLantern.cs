@@ -29,15 +29,15 @@ public class MovingLantern : MonoBehaviour
         if(movesHorizontal)
         {
             MoveHorizontal();
-            Debug.Log(offsetRight);
-            Debug.Log(offsetLeft);
+            //Debug.Log(offsetRight);
+            //Debug.Log(offsetLeft);
         }
 
         if(!movesHorizontal)
         {
             MoveVertical();
-            Debug.Log(offsetUp);
-            Debug.Log(offsetDown);
+            //Debug.Log(offsetUp);
+            //Debug.Log(offsetDown);
         }
     }
 
